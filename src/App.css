@@ -33,7 +33,7 @@ body {
 }
 
 .card {
-  background-image: url("/img/front_image.png");
+  background-image: url("./img/front_image.png");
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,7 +101,7 @@ body {
   color: white;
   transform: rotateY(0);
 }
-.card.correct {
+/* .card.correct {
   animation: fadeOut 1s linear forwards;
 }
 
@@ -112,7 +112,7 @@ body {
   100% {
     opacity: 0;
   }
-}
+} */
 
 .card.wrong {
   border-radius: 12px;
