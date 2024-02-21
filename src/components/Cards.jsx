@@ -31,6 +31,7 @@ function Cards() {
       items[prev].stat = "correct";
       setItems([...items]);
       setPrev(-1);
+      playCorrectSound();
     } else {
       items[current].stat = "wrong";
       items[prev].stat = "wrong";
@@ -42,6 +43,10 @@ function Cards() {
         setPrev(-1);
       }, 1000);
     }
+  }
+  function playCorrectSound() {
+    var audio = document.getElementById("correct-sound");
+    audio.play();
   }
 
   function handleClick(id) {

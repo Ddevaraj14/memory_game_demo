@@ -101,7 +101,7 @@ body {
   color: white;
   transform: rotateY(0);
 }
-.card.correct {
+/* .card.correct {
   animation: scale 0.4s linear forwards;
 }
 
@@ -110,26 +110,22 @@ body {
   50% {
     transform: scale(1);
   }
-  50%,
-  75% {
-    transform: scale(1);
-  }
+  
 
-  75%,
   100% {
     transform: scale(1);
   }
-}
+} */
 
 .card.wrong {
   border-radius: 14px;
   border: 2px solid #f00;
-  animation: error 0.1s linear forwards,
-    flip 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s forwards;
+  /* animation: error 0.1s linear forwards,
+    flip 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s forwards; */
   /* background-color: #fd245a; */
 }
 
-@keyframes error {
+/* @keyframes error {
   0%,
   100% {
     transform: translateX(0);
@@ -141,7 +137,7 @@ body {
   50% {
     transform: translateX(5px);
   }
-}
+} */
 
 @keyframes flip {
   0% {
