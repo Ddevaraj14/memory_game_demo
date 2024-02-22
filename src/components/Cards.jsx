@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
 function Cards() {
@@ -24,6 +24,25 @@ function Cards() {
   );
 
   const [prev, setPrev] = useState(-1);
+  const [matchedCount, setMatchedCount] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
+  const [showFade, setShowFade] = useState(false);
+
+  useEffect(() => {
+    if (matchedCount === items.length / 2) {
+      // All cards are matched
+      setTimeout(() => {
+        // Trigger fade-out animation for cards
+        setShowFade(true);
+      }, 500); // Fade out after 2 seconds
+
+      // After fade-out animation, fade in video file along with audio
+      setTimeout(() => {
+        // Code to fade in video file along with audio
+        setShowVideo(true);
+      }, 1000); // 1 second delay for fade-out animation and 2 seconds for fade-in video file
+    }
+  }, [matchedCount, items.length]);
 
   function check(current) {
     if (items[current].id === items[prev].id) {
@@ -32,6 +51,7 @@ function Cards() {
       setItems([...items]);
       setPrev(-1);
       playCorrectSound();
+      setMatchedCount(matchedCount + 1); // Increment matched count
     } else {
       items[current].stat = "wrong";
       items[prev].stat = "wrong";
@@ -44,6 +64,7 @@ function Cards() {
       }, 1000);
     }
   }
+
   function playCorrectSound() {
     var audio = document.getElementById("correct-sound");
     audio.play();
@@ -60,11 +81,31 @@ function Cards() {
   }
 
   return (
-    <div className="container">
-      {items.map((item, index) => (
-        <Card key={index} item={item} id={index} handleClick={handleClick} />
-      ))}
-    </div>
+    <>
+      <div className={`title_text ${showFade ? "fade-out" : ""}`}>
+        Match the pairs below to open the screens
+      </div>
+      <div className={`container ${showFade ? "fade-out" : ""}`}>
+        {items.map((item, index) => (
+          <Card key={index} item={item} id={index} handleClick={handleClick} />
+        ))}
+      </div>
+      <div className={`video-container ${showVideo ? "fade-in" : ""}`}>
+        {/* Video file along with audio */}
+        {showVideo && (
+          <>
+            <video autoPlay loop>
+              <source src="./video/success_anim.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+            <audio autoPlay loop>
+              <source src="./audio/crow_clapping.mp3" type="audio/mpeg" />
+              Your browser does not support the audio tag.
+            </audio>
+          </>
+        )}
+      </div>
+    </>
   );
 }
 
